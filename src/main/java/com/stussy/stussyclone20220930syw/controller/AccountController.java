@@ -1,6 +1,5 @@
 package com.stussy.stussyclone20220930syw.controller;
 
-import com.stussy.stussyclone20220930syw.controller.dto.RegisterReqDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 

@@ -1,4 +1,4 @@
-package com.stussy.stussyclone20220930syw.controller.dto.validation;
+package com.stussy.stussyclone20220930syw.dto.validation;
 
 public class ValidationGroups {
     public interface NotBlankGroup {};
