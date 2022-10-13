@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -24,5 +23,6 @@ public class User {
     private LocalDateTime create_date;
     private LocalDateTime update_date;
 
+    //롤은 우리가만든 타입이다.그래서 Mybatis가 그냥 줄수없음 그래서 account.xml에 role 타입을 만든것.
     private Role role;
 }

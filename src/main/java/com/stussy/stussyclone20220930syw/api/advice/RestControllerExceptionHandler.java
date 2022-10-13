@@ -1,6 +1,7 @@
 package com.stussy.stussyclone20220930syw.api.advice;
 
 import com.stussy.stussyclone20220930syw.dto.CMRespDto;
+import com.stussy.stussyclone20220930syw.exception.CustomInternalServerErrorException;
 import com.stussy.stussyclone20220930syw.exception.CustomValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,8 +20,16 @@ public class RestControllerExceptionHandler {
 
         //new CMRespDto 항상 유지 / 그안에는 메세지와 데이터가 들어와야한다.
         //이형식은 계속 유지하돼 badRequest부분만 바뀔것이다.
-        return ResponseEntity.badRequest().body(new CMRespDto<>(e.getMessage(),e.getErrorMap()));
+
+        //body에다가 메세지넣어주고 에러맵 보여주고.
+        return ResponseEntity.badRequest().body(new CMRespDto<>(e.getMessage(), e.getErrorMap()));
 
     }
 
+    @ExceptionHandler(CustomInternalServerErrorException.class)
+    public ResponseEntity<?> internalServerErrorException(CustomInternalServerErrorException e) {
+
+        return ResponseEntity.internalServerError().body(new CMRespDto<>(e.getMessage(), null));
+
+    }
 }
