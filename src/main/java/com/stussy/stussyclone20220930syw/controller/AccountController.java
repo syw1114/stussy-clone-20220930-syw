@@ -11,8 +11,10 @@ public class AccountController {
 
     @GetMapping("/account/login")
     //@Nullable -> 파라미터 값이 필수가 아니다.
-    public String login(Model model, @RequestParam @Nullable String email){
+    public String login(Model model, @RequestParam @Nullable String email,@RequestParam @Nullable String error){
         model.addAttribute("email", email == null ? "" : email);
+        model.addAttribute("error",error == null ? "" : error);
+
         return "account/login";
     }
 
@@ -20,4 +22,5 @@ public class AccountController {
     public String register(){
         return "account/register";
     }
+
 }

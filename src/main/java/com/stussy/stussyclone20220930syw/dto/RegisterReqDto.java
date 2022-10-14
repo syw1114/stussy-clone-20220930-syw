@@ -42,5 +42,4 @@ public class RegisterReqDto {
                 .role_id(1)
                 .build();
     }
-
 }
