@@ -16,7 +16,9 @@ import org.springframework.stereotype.Component;
 public class LogAop {
 
     @Pointcut("execution(* com.stussy.stussyclone20220930syw.api.*Api.*(..))")
+
     private void pointCut(){}
+
     @Pointcut("@annotation(com.stussy.stussyclone20220930syw.aop.annotation.LogAspect)")
     private void annotionPotinCut(){}
 

@@ -19,7 +19,7 @@ public class PrincipalDetails implements UserDetails {
     //GrantedAuthority권한객체이다 이녀석을 상속받은 녀석들만 와일드카드
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> anthorities = new ArrayList<GrantedAuthority>();
-        //getRole, getName <- GratedAuthority 객체들이다 //  Authorities 객체가생성.
+
         anthorities.add(() -> user.getRole().getName());
         return anthorities;
     }
