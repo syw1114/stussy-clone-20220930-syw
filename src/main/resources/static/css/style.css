@@ -20,7 +20,7 @@ button{
   padding: 10px;
   border: 1px solid black;
 }
-input{
+input, textarea, select{
   border: 1px solid rgb(198, 198, 198);
   outline: none;
   padding: 10px;
@@ -28,8 +28,8 @@ input{
   width: 100%;
 }
 
-input:focus{
-  border: 1px solid black;
+input:focus , textarea:focus , select:focus{
+  border: 2px solid black;
 }
 ul {
   margin:0;
