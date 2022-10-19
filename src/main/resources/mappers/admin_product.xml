@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--프로퍼티는 세터를 의미. 객체의 변수명이다 (프로퍼티) -->
+<mapper namespace="com.stussy.stussyclone20220930syw.repository.admin.ProductManagementRepository">
+    <resultMap id="product_category" type="com.stussy.stussyclone20220930syw.domain.ProductCategory">
+        <result property="category_id" column="id" />
+        <result property="group_id" column="role_name" />
+        <result property="category_name" column="create_date" />
+    </resultMap>
+
+
+    <select id="getCategoryList"  resultMap="product_category">
+        select
+            id,
+            group_id,
+            category_name,
+        from
+            pdt_category_mst
+    </select>
+
+    <insert id="saveUser" parameterType="com.stussy.stussyclone20220930syw.domain.User">
+        insert into
+            user_mst
+        values(
+            0,
+            #{email},
+            #{password},
+            #{name},
+            #{provider}, <!--provider null-->
+            #{role_id}, <!--일반 유저라 1.-->
+            now(),
+            now()
+        )
+    </insert>
+
+</mapper>
+
+
+
+
+
+

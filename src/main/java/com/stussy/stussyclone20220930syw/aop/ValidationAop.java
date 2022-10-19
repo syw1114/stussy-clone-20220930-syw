@@ -19,10 +19,12 @@ import java.util.Map;
 public class ValidationAop {
     //get* 으로 시작하는 메소드명 전체한테 적용해라.
     // com 앞에 * 자리 반환자료형.
-    @Pointcut("execution(* com.stussy.stussyclone20220930syw..*Api.*(..))")
-    private  void executionPointCut(){}
+    // @Pointcut("execution(* com.stussy.stussyclone20220930syw..*Api.*(..))")
+    // private  void executionPointCut(){}
+    @Pointcut("@annotation(com.stussy.stussyclone20220930syw.aop.annotation.ValidAspect)")
+    private void annotationPointCut(){}
 
-    @Around("executionPointCut()")
+    @Around("annotationPointCut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
 
         Object[] args = joinPoint.getArgs();
