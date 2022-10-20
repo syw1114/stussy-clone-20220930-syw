@@ -66,3 +66,67 @@ textarea{
   color:white;
   background-color: black;
 }
+.product-mst{
+  display: flex;
+  justify-content: space-between;
+  
+  width: 100%;
+}
+.show-option{
+  width: 28%;
+}
+.function-container{
+  height: 220px;
+  border: 1px solid rgb(198,198,198);
+  margin-top : 30px
+}
+.product-mst-list{
+  width: 100%;
+}
+
+.product-mst-list tbody{
+  max-height: 100%;
+}
+
+.product-mst-list td{
+  width: 8%;
+  padding: 0px 5px;
+}
+
+.product-mst-list td:nth-child(1){
+  width: 10%;
+}
+.product-mst-list td:nth-child(2){
+  width: 10%;
+}
+.product-mst-list td:nth-child(3){
+  width: 36%;
+  text-align: left;
+}
+.product-mst-list td:nth-child(4){
+  width: 12%;
+  text-align: right;
+}
+
+.product-mst-list button{
+  padding: 3px 7px;
+}
+
+.list-container{
+  width: 70%;
+  margin-top: 30px;
+  height: 715px;
+
+  overflow-y: auto;
+}
+
+.show-option label {
+  display: inline-block;
+  padding: 10px 0 5px;
+  
+  font-family: bold;
+}
+.show-option textarea{
+  height: 50px;
+  margin-bottom: 10px;
+}

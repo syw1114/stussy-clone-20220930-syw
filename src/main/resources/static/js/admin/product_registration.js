@@ -59,7 +59,28 @@ getObject(){
 }
 
 
+class CommonApi {
+  getCategoryList() {
+      let responseResult = null;
 
+      $.ajax({
+          async:false,
+          type: "get",
+          url:"/api/admin/product/category",
+          dataType: "json",
+          success: (response) => {
+              responseResult = response.data;
+          },
+          error: (error) => {
+              console.log(error);
+          }
+      
+      });
+  
+      return responseResult;
+  
+  }
+}
 
 
 
@@ -170,8 +191,10 @@ addRegistButtonEvent(){
       );
 
       const registerApi = new RegisterApi();
-      registerApi.createProductRequest(productMst.getObject());
-
+      if(registerApi.createProductRequest(productMst.getObject())){
+        alert("상품 등록 완료");
+        location.reload();
+      }
     }
   }
 }
@@ -186,31 +209,44 @@ const ProductRegistration = {
   }
 }
 
+class RegisterService {
+  static #instance = null;
 
-class RegisterService{
+  constructor() {
 
-  static #instance = null; 
-
-  constructor(){
-    
-  }
-  
-  static getInstance() {
-    if(this.#instance == null){
-      this.#instance = new RegisterService();
-    }
-    return this.#instance;
   }
 
-  loadRegister(){
+  static getInstance() { //생성 안하고 바로 호출가능
+      if(this.#instance == null){
+          this.#instance = new RegisterService();
+      }
+      return this.#instance;
+  }
+
+  loadRegister() {
       
   }
 
-  setRegisterHeaderEvent(){
-    new RegisterEventService();
+  getCategoryList() {
+      const commonApi = new CommonApi();
+      const productCategoryList = commonApi.getCategoryList();
+
+      const productCategory = document.querySelector(".product-category");
+      productCategory.innerHTML = "";
+
+      productCategoryList.forEach(category => {
+          productCategory.innerHTML += `productMst
+              <option value="${category.id}">${category.name}</option>
+          `;
+      })
+  }
+  
+  setRegisterHeaderEvent() {
+      new RegisterEventService();
   }
 }
 
 window.onload = () => {
+  RegisterService.getInstance().getCategoryList();
   RegisterService.getInstance().setRegisterHeaderEvent();
 }

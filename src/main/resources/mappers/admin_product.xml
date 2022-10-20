@@ -8,8 +8,8 @@
 <mapper namespace="com.stussy.stussyclone20220930syw.repository.admin.ProductManagementRepository">
     <resultMap id="product_category" type="com.stussy.stussyclone20220930syw.domain.ProductCategory">
         <result property="category_id" column="id" />
-        <result property="group_id" column="role_name" />
-        <result property="category_name" column="create_date" />
+        <result property="group_id" column="group_id" />
+        <result property="category_name" column="category_name" />
     </resultMap>
 
 
@@ -17,21 +17,24 @@
         select
             id,
             group_id,
-            category_name,
+            category_name
         from
             pdt_category_mst
     </select>
 
-    <insert id="saveUser" parameterType="com.stussy.stussyclone20220930syw.domain.User">
+    <insert id="saveProductMst" parameterType="com.stussy.stussyclone20220930syw.domain.Product">
         insert into
-            user_mst
+            pdt_mst
         values(
             0,
-            #{email},
-            #{password},
-            #{name},
-            #{provider}, <!--provider null-->
-            #{role_id}, <!--일반 유저라 1.-->
+            #{pdt_name},
+            #{category_id},
+            #{pdt_price},
+            #{pdt_simple_info},
+            #{pdt_detail_info},
+            #{pdt_option_info},
+            #{pdt_management_info},
+            #{pdt_shipping_info},
             now(),
             now()
         )
