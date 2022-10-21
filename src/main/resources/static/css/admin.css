@@ -120,6 +120,42 @@ textarea{
   overflow-y: auto;
 }
 
+.page-number-list{
+  display: flex;
+  
+}
+
+.page-number-list li{
+  margin-right: 3px;
+  border: 1px solid rgb(198,198,198);
+  border-radius: 3px;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+}
+
+.search-container{
+  width: 250px;
+  justify-content: space-between;
+  display: flex;
+}
+
+.search-input{
+  width: 200px;
+}
+
+.search-button{
+  color: white;
+  background-color: black;
+}
+
+.option-container{
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
 .show-option label {
   display: inline-block;
   padding: 10px 0 5px;
