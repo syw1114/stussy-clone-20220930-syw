@@ -22,6 +22,7 @@ public class ProductServiceImpl implements ProductService {
     public List<CollectionListRespDto> getProductList(String category, int page) throws Exception {
         List<CollectionListRespDto> productList = new ArrayList<CollectionListRespDto>();
         Map<String,Object> map = new HashMap<String, Object>();
+
         map.put("category", category);
         map.put("index", (page - 1) * 16);
 

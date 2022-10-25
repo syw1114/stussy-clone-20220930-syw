@@ -1,6 +1,7 @@
 package com.stussy.stussyclone20220930syw.service.admin;
 
 import com.stussy.stussyclone20220930syw.dto.admin.CategoryResponseDto;
+import com.stussy.stussyclone20220930syw.dto.admin.ProductMstOptionRespDto;
 import com.stussy.stussyclone20220930syw.dto.admin.ProductRegisterReqDTO;
 import com.stussy.stussyclone20220930syw.exception.CustomInternalServerErrorException;
 import com.stussy.stussyclone20220930syw.repository.admin.ProductManagementRepository;
@@ -30,5 +31,14 @@ public class ProductmanagementServiceImpl implements ProductManagementService{
             throw new CustomInternalServerErrorException("상품 등록 실패");
         }
 
+    }
+
+    @Override
+    public List<ProductMstOptionRespDto> getProductMstList() throws Exception {
+        List<ProductMstOptionRespDto> list = new ArrayList<>();
+        productManagementRepository.getProductMstList().forEach(pdtMst ->{
+            list.add(pdtMst.toDto());
+        });
+        return list;
     }
 }

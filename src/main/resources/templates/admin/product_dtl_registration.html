@@ -8,7 +8,9 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link rel="stylesheet" href="/static/css/header.css">
   <link rel="stylesheet" href="/static/css/style.css">
-  <link rel="stylesheet" href="/static/css/collections_number.css">
+  <link rel="stylesheet" href="/static/css/account.css">
+  <link rel="stylesheet" href="/static/css/aside.css">
+  <link rel="stylesheet" href="/static/css/admin.css">
 </head>
 <body>
   <div id="container">
@@ -56,27 +58,27 @@
       <script src="/static/js/header/header.js"></script>
     </header>
     <main>
-      <ul class="page-number-list">
-
-      </ul>
-        <ul class="collection-products">
-            <li class="collection-product">
-              <div class="product-img">
-                  <img src="/static/images/product/product1.png">
+        <div class="admin">
+            <h1 class="admin-title">ADMIN PRODUCT REGISTRATION</h1>
+            <div class="admin-container">
+                <aside class ="admin-menus">
+                    <ul>
+                      <li><a href="/admin/products">상품 조회</a></li>
+                      <li><a href="/admin/products/addition">상품 등록</a></li>
+                      <li><a href="/admin/systems">시스템 정보</a></li>
+                      <li><a href="/logout">로그아웃</a></li>
+                    </ul>
+                </aside>
+                <section class="admin-main">
+                    <select class="product-select">
+                      <option value="1">WORLD TOUR TEE</option>
+                    </select>
+                </section>
               </div>
-              <div class="product-name">
-        
-              </div>
-              <div class="product-price">
-
-              </div>
-            </li>
-        </ul>
-    </main>
-    <footer>
-
-    </footer>
-  </div>
-<script src="/static/js/product/collections_number.js"></script>
-</body>
+        </div>
+      </main>
+    </div>
+    <script src="/static/js/admin/product_dtl_registration.js"></script>
+  </body>
 </html>
+              
