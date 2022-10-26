@@ -85,7 +85,7 @@
             #{pdt_color},
             #{pdt_stock},
             now(),
-            now
+            now()
         )
     </insert>
 </mapper>
