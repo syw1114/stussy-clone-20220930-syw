@@ -12,4 +12,6 @@ public interface ProductManagementService {
     public void registerMst(ProductRegisterReqDTO productRegisterReqDTO) throws Exception;
 
     public List<ProductMstOptionRespDto> getProductMstList() throws Exception;
+
+    public List<?> getSizeList(int productId) throws Exception;
 }
