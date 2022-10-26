@@ -63,6 +63,31 @@
             pm.id = #{productId}
     </select>
 
+    <!--중복체크.-->
+    <select id="findProductColor" parameterType="com.stussy.stussyclone20220930syw.domain.ProductDetail" resultType="Integer">
+        select
+           count(*)
+        from
+            pdt_dtl
+        where
+            pdt_id = #{pdt_id}
+        and size_id = #{size_id}
+        and pdt_color = #{pdt_color}
+    </select>
+
+    <insert id="saveProductDtl" parameterType="com.stussy.stussyclone20220930syw.domain.ProductDetail">
+        insert into
+            pdt_dtl
+        values(
+            0,
+            #{pdt_id},
+            #{size_id},
+            #{pdt_color},
+            #{pdt_stock},
+            now(),
+            now
+        )
+    </insert>
 </mapper>
 
 

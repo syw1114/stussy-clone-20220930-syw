@@ -3,6 +3,7 @@ package com.stussy.stussyclone20220930syw.api.admin;
 import com.stussy.stussyclone20220930syw.aop.annotation.LogAspect;
 import com.stussy.stussyclone20220930syw.aop.annotation.ValidAspect;
 import com.stussy.stussyclone20220930syw.dto.CMRespDto;
+import com.stussy.stussyclone20220930syw.dto.admin.ProductRegisterDtlReqDto;
 import com.stussy.stussyclone20220930syw.dto.admin.ProductRegisterReqDTO;
 import com.stussy.stussyclone20220930syw.service.admin.ProductManagementService;
 import lombok.RequiredArgsConstructor;
@@ -57,6 +58,16 @@ public class ProductAdminApi {
         return ResponseEntity.ok()
                 .body(new CMRespDto<>("get Successfully", productManagementService.getSizeList(productId)));
         //프로덕트 아이디에 따라서 사이즈를 다르게 받아옴.
+    }
+
+    @PostMapping("/product/dtl")
+    public ResponseEntity<?> registerDtl(@RequestBody ProductRegisterDtlReqDto productRegisterDtlReqDto) throws Exception{
+
+        productManagementService.checkDuplicatedColor(productRegisterDtlReqDto);
+
+
+
+        return ResponseEntity.ok().body(new CMRespDto<>("Register Successfully", null));
     }
 
 }

@@ -9,5 +9,4 @@ public class StussyClone20220930SywApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StussyClone20220930SywApplication.class, args);
 	}
-
 }
