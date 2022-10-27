@@ -18,4 +18,6 @@ public interface ProductManagementRepository {
 
     public int saveProductDtl(ProductDetail productDetail) throws Exception;
 
+    public int saveProductImg(List<ProductImg> productImgs) throws Exception;
+
 }
