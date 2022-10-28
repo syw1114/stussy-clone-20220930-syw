@@ -8,6 +8,8 @@ import com.stussy.stussyclone20220930syw.repository.admin.ProductManagementRepos
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -25,9 +27,7 @@ public class ProductmanagementServiceImpl implements ProductManagementService{
     //ProductmanagementServiceImpl 가 생성될때 productManagementRepository 에 값이 주입됨.
 
 
-    //표현식을쓰면 yml에 있는걸 가져옴.
-    @Value("${file.path}")
-    private String filePath;
+    private final ResourceLoader resourceLoader;
     private final ProductManagementRepository productManagementRepository;
 
     @Override
@@ -95,6 +95,30 @@ public class ProductmanagementServiceImpl implements ProductManagementService{
         List<ProductImg> productImgs = new ArrayList<ProductImg>();
 
         productImgReqDto.getFiles().forEach(file -> {
+            Resource resource = resourceLoader.getResource("classpath:static/upload/product");
+            String filePath = null;
+
+
+            //프로덕트까지 못찾으면
+
+            try{
+                //해당경로에 이폴더가 존재하냐
+                if(!resource.exists()) {
+                    String tempPath = resourceLoader.getResource("classpath:static").getURI().toString();
+                    tempPath = tempPath.substring(tempPath.indexOf("/") + 1);
+
+                    File f = new File(tempPath + "/upload/product");
+                    f.mkdirs();
+                }
+
+                filePath = resource.getURI().toString();
+
+                filePath = filePath.substring(filePath.indexOf("/") + 1);
+                System.out.println(filePath);
+            } catch (IOException e){
+                throw new RuntimeException(e);
+            }
+
             String originName = file.getOriginalFilename();
             //. 을 찾아라 .의 위치에서부터 잘라라 ex) sdfas.png
             String extension = originName.substring(originName.lastIndexOf("."));
@@ -102,28 +126,22 @@ public class ProductmanagementServiceImpl implements ProductManagementService{
             String saveName = UUID.randomUUID().toString().replace("-","") + extension;
 
             // 해당 폴더의 저파일명까지 경로를 만들어줌.
-            Path path = Paths.get(filePath + "product/" + saveName);
+            Path path = Paths.get(filePath + "/" + saveName);
 
-            //파일객체를 만들어주고
-            File f = new File(filePath + "product");
-            //해당경로에 이폴더가 존재하냐
-            if(!f.exists()) {
-                f.mkdirs();
-            }
 
-            //file.getbytes를 path에 써라
-            try {
-                Files.write(path, file.getBytes());
-            } catch (IOException e) {
-                throw new CustomInternalServerErrorException(e.getMessage());
-            }
+        //file.getbytes를 path에 써라
+        try {
+            Files.write(path, file.getBytes());
+        } catch (IOException e) {
+            throw new CustomInternalServerErrorException(e.getMessage());
+        }
 
-            productImgs.add(ProductImg.builder()
-                            .pdt_id(productImgReqDto.getPdtId())
-                            .origin_name(originName)
-                            .save_name(saveName)
-                            .build());
-        });
+        productImgs.add(ProductImg.builder()
+                .pdt_id(productImgReqDto.getPdtId())
+                .origin_name(originName)
+                .save_name(saveName)
+                .build());
+    });
         productManagementRepository.saveProductImg(productImgs);
     }
 }
