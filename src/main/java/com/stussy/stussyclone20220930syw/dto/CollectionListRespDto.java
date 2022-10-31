@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 @Data
 @Builder
 public class CollectionListRespDto {
+
     private int productId;
     private String productName;
     private int productPrice;

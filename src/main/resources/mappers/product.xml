@@ -16,7 +16,7 @@
     </resultMap>
 
     <resultMap id="getProductImg" type="com.stussy.stussyclone20220930syw.domain.ProductImg">
-        <result property="save_name" column="pdt_id"></result>
+        <result property="save_name" column="save_name"></result>
     </resultMap>
 
     <resultMap id="getProductMst" type="com.stussy.stussyclone20220930syw.domain.Product">
