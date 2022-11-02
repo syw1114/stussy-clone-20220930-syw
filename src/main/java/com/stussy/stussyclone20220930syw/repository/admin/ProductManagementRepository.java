@@ -12,7 +12,7 @@ public interface ProductManagementRepository {
 
     public List<OptionProductMst> getProductMstList() throws Exception;
 
-    public List<OptionproductSize> getSizeList(int productId) throws Exception;
+    public List<OptionProductSize> getSizeList(int productId) throws Exception;
 
     public int findProductColor(ProductDetail productDetail) throws Exception;
 

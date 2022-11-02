@@ -2,6 +2,7 @@ package com.stussy.stussyclone20220930syw.service;
 
 
 import com.stussy.stussyclone20220930syw.domain.Product;
+import com.stussy.stussyclone20220930syw.dto.CheckoutRespDto;
 import com.stussy.stussyclone20220930syw.dto.CollectionListRespDto;
 import com.stussy.stussyclone20220930syw.dto.ProductRespDto;
 import com.stussy.stussyclone20220930syw.exception.CustomValidationException;
@@ -56,14 +57,14 @@ public class ProductServiceImpl implements ProductService {
 
         product.getPdt_dtls().forEach(dtl -> {
             //맵완성
-            Map<String,Object> pdtDtilIdAndSize = new HashMap<String, Object>();
-            pdtDtilIdAndSize.put("pdtDtilId", dtl.getId());
-            pdtDtilIdAndSize.put("sizeId", dtl.getSize_id());
-            pdtDtilIdAndSize.put("sizeName", dtl.getSize_name());
-            pdtDtilIdAndSize.put("pdtStock", dtl.getPdt_stock());
+            Map<String,Object> pdtDtlIdAndSize = new HashMap<String, Object>();
+            pdtDtlIdAndSize.put("pdtDtlId", dtl.getId());
+            pdtDtlIdAndSize.put("sizeId", dtl.getSize_id());
+            pdtDtlIdAndSize.put("sizeName", dtl.getSize_name());
+            pdtDtlIdAndSize.put("pdtStock", dtl.getPdt_stock());
 
             //맵이 여기에 들어감 리스트에 정리돼서
-            pdtColors.get(dtl.getPdt_color()).add(pdtDtilIdAndSize);
+            pdtColors.get(dtl.getPdt_color()).add(pdtDtlIdAndSize);
         });
 
         product.getPdt_imgs().forEach(img -> {
@@ -84,5 +85,10 @@ public class ProductServiceImpl implements ProductService {
                     .build();
 
         return  dto;
+    }
+
+    @Override
+    public CheckoutRespDto getCheckoutProduct(int pdtDtlId) throws Exception {
+        return productRepository.getPaymentProduct(pdtDtlId).toDto();
     }
 }

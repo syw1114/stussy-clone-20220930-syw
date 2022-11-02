@@ -47,7 +47,11 @@
             um.email = #{email}
     </select>
     <!--Select만 결과가있어서 resultMap 이있는거고 , 나머지 insert Delet update는 갯수(int)라 없음-->
-    <insert id="saveUser" parameterType="com.stussy.stussyclone20220930syw.domain.User">
+    <insert id="saveUser"
+            parameterType="com.stussy.stussyclone20220930syw.domain.User"
+            useGeneratedKeys="true"
+            keyProperty="id"
+    >
         insert into
             user_mst
         values(

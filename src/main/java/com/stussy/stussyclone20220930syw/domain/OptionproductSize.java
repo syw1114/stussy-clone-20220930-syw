@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class OptionproductSize {
+public class OptionProductSize {
 
     private int size_id;
     private String size_name;
