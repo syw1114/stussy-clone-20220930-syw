@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/account/login") // login page Get요청
                 .loginProcessingUrl("/account/login") // login service Post요청. //매핑주소임.
                 .failureHandler(new AuthFailureHandler())
-                .defaultSuccessUrl("/index")
+                .defaultSuccessUrl("/collections/all")
                 .and()
                 .oauth2Login()
                 .userInfoEndpoint()

@@ -76,7 +76,7 @@ public class PrincipalOauth2Service extends DefaultOAuth2UserService {
             //연동
             user.setProvider(provider);
             accountRepository.updateProvider(user);
-        }else if(user.getProvider().equals(provider)) {
+        }else if(!user.getProvider().equals(provider)) {
             user.setProvider(user.getProvider() + "," + provider);
             accountRepository.updateProvider(user);
         }
