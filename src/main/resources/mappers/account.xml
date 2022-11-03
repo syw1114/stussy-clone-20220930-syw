@@ -28,6 +28,18 @@
         <collection property="role" resultMap="role" />
     </resultMap>
 
+    <update id="updateProvider" parameterType="com.stussy.stussyclone20220930syw.domain.User">
+        update
+            user_mst
+        set
+            provider = #{provider},
+            update_date = now()
+        where
+            id = #{id}
+    </update>
+
+
+
     <!--조인을 할려면 합resultMap 이다. 2개를 만듬 왜냐-> 하나는 유저, 하나는 롤 , 객체가달라서. 조인을 할려면 둘이 쳐야하는데 둘이합칠때 쓰는게 collection 이다. 그래야 조인이됨.-->
     <select id="findUserByEmail" parameterType="String" resultMap="user">
         select

@@ -12,4 +12,5 @@ public interface AccountRepository {
     public User findUserByEmail(String email) throws Exception;
     //User이 연결된 xml이 필요하다.
     public int saveUser(User user) throws Exception;
+    public int updateProvider(User user) throws Exception;
 }
